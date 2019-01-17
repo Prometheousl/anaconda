@@ -1,0 +1,57 @@
+program: definition
+       | expression
+       | definition program
+       | expression program
+
+definition: varDef
+          | funcDef
+
+varDef: VAR varList
+
+varList: VARIABLE optInit
+       | VARIABLE optInit COMMA varList
+
+optInit: ASSIGN expression
+       | *empty*
+
+funcDef: FUNCTION VARIABLE OPEN_PAREN optParameterList CLOSE_PAREN block
+
+optParameterList: VARIABLE
+                | VARIABLE COMMA parameterList
+                | *empty*
+
+block: statements
+
+statements: statement
+          | statement statements
+
+statement: definition
+         | expression
+         | ifStatement
+         | whileLoop
+
+ifStatement: IF OPEN_PAREN expression CLOSE_PAREN block optElse
+
+optElse: ELSE block
+       | ELSE ifStatement
+       | *empty*
+
+whileLoop: WHILE OPEN_PAREN expression CLOSE_PAREN block
+
+expression: unary
+          | unary operator expression
+
+operator: PLUS
+        | MINUS
+        | TIMES
+        | DIVIDE
+
+unary: VARIABLE
+     | INTEGER
+     | REAL
+     | BOOLEAN
+     | CHAR
+     | STRING
+     | OPEN_PAREN expression CLOSE_PAREN
+     | UMINUS                                             // -a, --a, ++a, etc.
+     | VARIABLE OPEN_PAREN optParameterList Close_PAREN   // function calls
