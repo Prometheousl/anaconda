@@ -1,24 +1,37 @@
 program: definition
        | expression
+       | includeStatement
        | definition program
        | expression program
+       | includeStatement program
+
+includeStatement: INCLUDE ID
 
 definition: varDef
           | funcDef
+          | classDef
 
 varDef: VAR varList
 
-varList: VARIABLE optInit
-       | VARIABLE optInit COMMA varList
+varList: ID optInit
+       | ID optInit COMMA varList
 
 optInit: ASSIGN expression
        | *empty*
 
-funcDef: FUNCTION VARIABLE OPEN_PAREN optParameterList CLOSE_PAREN block
+funcDef: DEF ID OPEN_PAREN optParameterList CLOSE_PAREN COLON block RETURN optExpressionList // why can we not have an expression list instaed of parameter list?
 
-optParameterList: VARIABLE
-                | VARIABLE COMMA parameterList
+optParameterList: parameterList
                 | *empty*
+
+parameterList: ID
+             | ID COMMA parameterList
+
+optExpressionList: expressionList
+                 | *empty*
+
+expressionList: expression
+              | expression COMMA expressionList
 
 block: statements
 
@@ -29,14 +42,17 @@ statement: definition
          | expression
          | ifStatement
          | whileLoop
+         | forLoop
 
-ifStatement: IF OPEN_PAREN expression CLOSE_PAREN block optElse
+ifStatement: IF OPEN_PAREN expression CLOSE_PAREN COLON block BREAK optElse
 
-optElse: ELSE block
-       | ELSE ifStatement
+optElse: ELSE COLON block BREAK
+       | ELSE ifStatement                              // maybe change to elif?
        | *empty*
 
-whileLoop: WHILE OPEN_PAREN expression CLOSE_PAREN block
+whileLoop: WHILE OPEN_PAREN expression CLOSE_PAREN COLON block END
+
+forLoop: FOR ID IN ID COLON block END
 
 expression: unary
           | unary operator expression
@@ -45,13 +61,25 @@ operator: PLUS
         | MINUS
         | TIMES
         | DIVIDE
+        | COMPARISON                                     // <=, >, ==, >=, >
 
-unary: VARIABLE
+unary: idExpr
+     | array
+     | classProperties
      | INTEGER
      | REAL
      | BOOLEAN
      | CHAR
      | STRING
-     | OPEN_PAREN expression CLOSE_PAREN
-     | UMINUS                                             // -a, --a, ++a, etc.
-     | VARIABLE OPEN_PAREN optParameterList Close_PAREN   // function calls
+     | OPEN_PAREN expression CLOSE_PAREN                 // grouping expressions
+     | MINUS unary                                      // -a, --a, ++a, etc.
+
+idExpr: ID
+      | ID OPEN_PAREN optParameterList CLOSE_PAREN // function calls
+
+array: OPEN_BRACKET optExpressionList OPEN_BRACKET
+
+classDef: CLASS ID COLON block ENDCLASS
+
+classProperties: ID DOT ID
+               | ID DOT ID OPEN_PAREN optParameterList CLOSE_PAREN
