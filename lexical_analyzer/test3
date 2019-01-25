@@ -1,0 +1,8 @@
+// converts temperature in celsius to fahrenheit
+
+var celsius = 37.5
+
+// calculate fahrenheit
+
+var fahrenheit = (celsius * 1.8) + 32
+print(celsius + 'degrees Celsius equals' + fahrenheit + 'degrees fahrenheit')

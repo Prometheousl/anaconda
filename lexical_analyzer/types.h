@@ -25,6 +25,8 @@ extern char *TIMES;
 extern char *DIVIDE;
 extern char *LESS_THAN;
 extern char *GREATER_THAN;
+extern char *AND;
+extern char *OR;
 // bad extern characters
 extern char *UNKNOWN;
 extern char *BAD_NUMBER;
@@ -39,8 +41,11 @@ extern char *RETURN;
 extern char *BREAK;
 extern char *END;
 extern char *FOR;
+extern char *IN;
 extern char *CLASS;
 extern char *ENDCLASS;
+extern char *TRUE;
+extern char *FALSE;
 //types
 extern char *INTEGER;
 extern char *REAL;

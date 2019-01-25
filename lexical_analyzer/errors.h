@@ -1,7 +1,7 @@
 /*
- * real.h
+ * errors.h
  *
- *  Created on: Sep 6, 2017
+ *  Created on: Jan 24 2019
  *      Author: alexl
  */
 

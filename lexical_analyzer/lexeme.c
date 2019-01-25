@@ -2,7 +2,7 @@
  * lexeme.c
  *
  *  Created on: January 24, 2019
- *      Author: Alex Lay
+ *  Author: Alex Lay
  */
 
 #include <stdio.h>
@@ -13,6 +13,10 @@
 #include "types/int.h"
 #include "types.h"
 
+/** A lexeme is a type & token pairing
+  * Often most of these value fields will
+  * remain empty but memory is cheap
+  */
 struct lexeme {
   String *type; // Integer, Real, String, etc.
   Integer *lineNumber;
@@ -41,7 +45,7 @@ Lexeme *newLexemeString(char *t, char *s, int ln) {
   p->lineNumber = newINT(ln);
   p->string = newString(s);
 }
-
+// for integers
 Lexeme *newLexemeInt(int i, int ln) {
   Lexeme *p = malloc(sizeof(Lexeme));
   if (p == 0) {
@@ -51,7 +55,7 @@ Lexeme *newLexemeInt(int i, int ln) {
   p->lineNumber = newINT(ln);
   p->integer = newINT(i);
 }
-
+// for reals
 Lexeme *newLexemeReal(double r, int ln) {
   Lexeme *p = malloc(sizeof(Lexeme));
   if (p == 0) {

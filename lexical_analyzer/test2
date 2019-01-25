@@ -1,0 +1,17 @@
+// calculates area of triangle
+
+include 'math'
+
+def calcArea(a,b,c):
+  // calculate semi-perimeter
+  var semi = (a + b + c) / 2
+  // calculate area
+  return math.sqrt((semi*(semi-a)*(semi-b)*(semi-c)))
+
+def main():
+  var a = 5, b = 6, c = 7
+  var area = calcArea(a,b,c)
+  print(area)
+  return
+
+main()

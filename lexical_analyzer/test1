@@ -6,7 +6,7 @@
 
 // include *************************************************
 
-include myFile             // include statement at top-level
+include 'myFile'             // include statement at top-level
 
 // definitions *********************************************
 

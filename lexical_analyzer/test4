@@ -1,0 +1,23 @@
+// fibonnaci sequence program
+
+var numTerms = 10
+
+// first two terms
+var n1 = 0
+var n2 = 1
+var count = 0
+
+// check if num of terms valid
+if(numTerms <= 0):
+  print('Please enter a positive integer')
+  break
+else if(numTerms == 1):
+  print('Fibonacci sequence up to ' + numTerms + ": " + n1)
+else:
+  print('Fibonnaci sequence up to ' + numTerms + ': ')
+  while(count < numTerms):
+    print(n1 + ', ')
+    var nth = n1 + n2
+    n1 = n2
+    n2 = nth
+    count = count + 1

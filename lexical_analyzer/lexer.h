@@ -13,8 +13,8 @@
 
 typedef struct lexer Lexer;
 
-extern Lexer *newLexer(char *fn);
-extern Lexeme *lex(Lexer *lexer);
+extern Lexer *newLexer(FILE *);
+extern Lexeme *lex(Lexer *);
 
 
 #endif /* LEXER_H_ */

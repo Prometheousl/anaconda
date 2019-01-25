@@ -25,6 +25,8 @@ char *TIMES = "TIMES";
 char *DIVIDE = "DIVIDE";
 char *LESS_THAN = "LESS_THAN";
 char *GREATER_THAN = "GREATER_THAN";
+char *AND = "AND";
+char *OR = "OR";
 // bad characters
 char *UNKNOWN = "UNKNOWN";
 char *BAD_NUMBER = "BAD_NUMBER";
@@ -39,8 +41,11 @@ char *RETURN = "RETURN";
 char *BREAK = "BREAK";
 char *END = "END";
 char *FOR = "FOR";
+char *IN = "IN";
 char *CLASS = "CLASS";
 char *ENDCLASS = "ENDCLASS";
+char *TRUE = "TRUE";
+char *FALSE = "FALSE";
 //types
 char *INTEGER = "INTEGER";
 char *REAL = "REAL";

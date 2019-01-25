@@ -1,0 +1,14 @@
+// program designed to throw a lex error
+
+/* Making sure multi-line
+ * comments work...
+ *
+ blah blah blah
+
+ */
+
+var x = 7
+def myFunc():
+  var y = 10
+  _     // should throw an UNKNOWN error
+  8..9  // should throw a BAD_NUMBER error
